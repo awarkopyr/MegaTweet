@@ -1,72 +1,83 @@
 import React from 'react'
-import {Container, Logo, LogoutBtn} from '../index'
-import { Link } from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import { LogoutBtn } from '../index'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Logo from '../../PYR-logos_black.png';
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status)
   const navigate = useNavigate()
 
-  const navItems = [
+  const navItems1 = [
     {
       name: 'Home',
       slug: "/",
       active: true
-    }, 
+    },
+    {
+      name: "All Posts",
+      slug: "/all-posts",
+      active: authStatus,
+    },
+    {
+      name: "Add Post",
+      slug: "/add-post",
+      active: authStatus,
+    },
+  ]
+  const navItem2 = [
     {
       name: "Login",
       slug: "/login",
       active: !authStatus,
-  },
-  {
+    },
+    {
       name: "Signup",
       slug: "/signup",
       active: !authStatus,
-  },
-  {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-  },
-  {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-  },
+    },
   ]
 
 
   return (
-    <header className='py-3 shadow bg-gray-500'>
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
-        <nav className='flex'>
-          <div className='mr-4'>
-            <Link to='/'>
-              <Logo width='70px'   />
-
-              </Link>
-          </div>
-          <ul className='flex ml-auto'>
-            {navItems.map((item) => 
+        <Navbar.Brand onClick={() => navigate('/')}><img
+        src={Logo}
+        alt="Logo"
+        width="80px"
+        height="80px"
+        className="d-inline-block align-top"
+    /></Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">{navItems1.map((item) =>
             item.active ? (
-              <li key={item.name}>
-                <button
-                onClick={() => navigate(item.slug)}
-                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
-                >{item.name}</button>
-              </li>
+              <Nav.Link key={item.name} onClick={() => navigate(item.slug)}>
+                {item.name}
+              </Nav.Link>
             ) : null
+          )}
+          </Nav>
+          <Nav className="me-left">
+            {navItem2.map((item) =>
+              item.active ? (
+                <Nav.Link key={item.name} onClick={() => navigate(item.slug)}>
+                  {item.name}
+                </Nav.Link>
+              ) : null
             )}
             {authStatus && (
-              <li>
-                <LogoutBtn />
-              </li>
+              <Nav.Link><LogoutBtn /></Nav.Link>
+
             )}
-          </ul>
-        </nav>
-        </Container>
-    </header>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
