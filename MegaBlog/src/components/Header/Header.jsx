@@ -46,13 +46,15 @@ function Header() {
     <Navbar collapseOnSelect expand="lg" className=" bg-blacbg-body-tertiaryk text-light bg-dark">
       <Container>
         <Navbar.Brand onClick={() => navigate('/')}><img
-        src={Logo}
-        alt="Logo"
-        width="80px"
-        height="80px"
-        className="d-inline-block align-top"
-    /></Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          src={Logo}
+          alt="Logo"
+          width="80px"
+          height="80px"
+          className="d-inline-block align-top"
+        /></Navbar.Brand>
+        <Navbar.Toggle aria-controls='responsive-navbar-nav'>
+          <span className='navbar-toggler-icon' style={{ backgroundImage: "url(\"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E\")" }}></span>
+        </Navbar.Toggle>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">{navItems1.map((item) =>
             item.active ? (
