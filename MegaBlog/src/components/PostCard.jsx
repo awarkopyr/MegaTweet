@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 function PostCard({ $id, title, featuredImage, content }) {
+    const strippedContent = content.replace(/<[^>]*>?/gm, ''); // Remove HTML tags
+    const firstTenWords = strippedContent.split(' ').slice(0, 10).join(' '); // Get first 10 words
 
     return (
         <Link to={`/post/${$id}`}>
@@ -13,7 +15,7 @@ function PostCard({ $id, title, featuredImage, content }) {
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
-                        {content}
+                        {firstTenWords}
                     </Card.Text>
                     <Button variant="primary">Click to read</Button>
                 </Card.Body>
