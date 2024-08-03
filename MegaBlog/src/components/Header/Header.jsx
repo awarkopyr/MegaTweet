@@ -43,7 +43,7 @@ function Header() {
 
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className=" bg-blacbg-body-tertiaryk text-light bg-dark">
       <Container>
         <Navbar.Brand onClick={() => navigate('/')}><img
         src={Logo}
@@ -56,7 +56,7 @@ function Header() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">{navItems1.map((item) =>
             item.active ? (
-              <Nav.Link key={item.name} onClick={() => navigate(item.slug)}>
+              <Nav.Link key={item.name} onClick={() => navigate(item.slug)} className='text-light py-2 my-1'>
                 {item.name}
               </Nav.Link>
             ) : null
@@ -65,13 +65,13 @@ function Header() {
           <Nav className="me-left">
             {navItem2.map((item) =>
               item.active ? (
-                <Nav.Link key={item.name} onClick={() => navigate(item.slug)}>
+                <Nav.Link key={item.name} onClick={() => navigate(item.slug)} className='text-light py-2 my-1'>
                   {item.name}
                 </Nav.Link>
               ) : null
             )}
             {authStatus && (
-              <Nav.Link><LogoutBtn /></Nav.Link>
+              <Nav.Link className='text-light py-2 my-1'><LogoutBtn /></Nav.Link>
 
             )}
           </Nav>
