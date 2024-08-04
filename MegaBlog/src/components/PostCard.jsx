@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 
 function PostCard({ $id, title, featuredImage, content }) {
     const strippedContent = content.replace(/<[^>]*>?/gm, ''); // Remove HTML tags
-    const firstTenWords = strippedContent.split(' ').slice(0, 10).join(' '); // Get first 10 words
+    const firstTenWords = strippedContent.split(' ').slice(0, 5).join(' '); // Get first 10 words
 
     return (
         <Link to={`/post/${$id}`}>

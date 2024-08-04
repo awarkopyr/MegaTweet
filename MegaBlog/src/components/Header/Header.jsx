@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../../PYR-logos_black.png';
 
+
 function Header() {
   const authStatus = useSelector((state) => state.auth.status)
   const navigate = useNavigate()
@@ -39,6 +40,11 @@ function Header() {
       slug: "/signup",
       active: !authStatus,
     },
+    {
+      name: "Profile",
+      slug: "/profile",
+      active: authStatus,
+    },
   ]
 
 
@@ -58,7 +64,7 @@ function Header() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">{navItems1.map((item) =>
             item.active ? (
-              <Nav.Link key={item.name} onClick={() => navigate(item.slug)} className='text-light py-2 my-1'>
+              <Nav.Link key={item.name} onClick={() => navigate(item.slug)} className='text-light py-2 my-1  hover:bg-black rounded-full'>
                 {item.name}
               </Nav.Link>
             ) : null
@@ -67,13 +73,13 @@ function Header() {
           <Nav className="me-left">
             {navItem2.map((item) =>
               item.active ? (
-                <Nav.Link key={item.name} onClick={() => navigate(item.slug)} className='text-light py-2 my-1'>
+                <Nav.Link key={item.name} onClick={() => navigate(item.slug)} className='text-light py-2 my-2 hover:bg-black rounded-full'>
                   {item.name}
                 </Nav.Link>
               ) : null
             )}
             {authStatus && (
-              <Nav.Link className='text-light py-2 my-1'><LogoutBtn /></Nav.Link>
+              <Nav.Link className='text-light py-2 my-2'><LogoutBtn /></Nav.Link>
 
             )}
           </Nav>
